@@ -1,0 +1,133 @@
+﻿<pu:WindowX
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Iwara"
+        xmlns:Silver="clr-namespace:Panuon.UI.Silver;assembly=Panuon.UI.Silver" x:Class="Iwara.MainWindow"
+        xmlns:pu="clr-namespace:Panuon.UI.Silver;assembly=Panuon.UI.Silver"
+        mc:Ignorable="d"
+        Title="Iwara" Height="500" Width="1000" Icon="App.ico">
+    <Grid>
+        <TabControl
+            x:Name="mainTab"
+            TabStripPlacement="Left"
+            pu:TabControlHelper.ItemHeight="50"
+            pu:TabControlHelper.ItemPadding="0,0,20,0"
+            pu:TabControlHelper.SelectedBackground="Gainsboro"
+            pu:TabControlHelper.SelectedForeground="Black"
+            pu:TabControlHelper.ItemsAlignment="LeftOrTop" SelectionChanged="MainTab_SelectionChanged">
+            <TabItem Header="Videos" pu:TabControlHelper.ItemIcon="&#xF008;" Cursor="Hand">
+                <Grid>
+                    <Grid x:Name="videosPreview">
+                        <TextBlock Text="Sort by:" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18" Margin="10,10,0,0"/>
+                        <ComboBox x:Name="videosSort"
+                    pu:ComboBoxHelper.HoverBackground="#1EB5B5B5"
+                    pu:ComboBoxHelper.CornerRadius="6"
+                    pu:ComboBoxHelper.SelectedBackground="#32B5B5B5" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="80,10,0,0" Height="25" Width="60" SelectionChanged="VideosSort_SelectionChanged">
+                            <ComboBoxItem Content="Date" IsSelected="True" />
+                            <ComboBoxItem Content="Views"/>
+                            <ComboBoxItem Content="Likes"/>
+                        </ComboBox>
+                        <pu:WaterfallViewer x:Name="videosWaterfall"
+                                        IsLazyLoadingEnabled="True"
+                                        LazyLoading="VideosWaterfall_LazyLoading" Groups="4" Margin="0,40,0,0" />
+                    </Grid>
+                    <Grid x:Name="videoMain" Visibility="Hidden">
+                        <Button
+                            Content="&#xf104; Back"
+                            FontFamily="{StaticResource FontAwesome}"
+                            pu:ButtonHelper.ButtonStyle="Hollow"
+                            BorderBrush="#FF3F3F3F"
+                            Foreground="#FF3F3F3F"
+                            pu:ButtonHelper.HoverBrush="#3F3F3F"
+                            pu:ButtonHelper.CornerRadius="6" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Width="80" FontSize="18" Click="VideoMainBack"/>
+                        <Grid x:Name="videoMainPlayer" Margin="0,40,0,0"/>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Images" pu:TabControlHelper.ItemIcon="&#xF03E;" Cursor="Hand">
+                <Grid>
+                    <Grid x:Name="imagesPreview">
+                        <TextBlock Text="Sort by:" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18" Margin="10,10,0,0"/>
+                        <ComboBox x:Name="imagesSort"
+                            pu:ComboBoxHelper.HoverBackground="#1EB5B5B5"
+                            pu:ComboBoxHelper.CornerRadius="6"
+                            pu:ComboBoxHelper.SelectedBackground="#32B5B5B5" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="80,10,0,0" Height="25" Width="60" SelectionChanged="ImagesSort_SelectionChanged">
+                            <ComboBoxItem Content="Date" IsSelected="True" />
+                            <ComboBoxItem Content="Views"/>
+                            <ComboBoxItem Content="Likes"/>
+                        </ComboBox>
+                        <pu:WaterfallViewer x:Name="imagesWaterfall"
+                                        IsLazyLoadingEnabled="True"
+                                        LazyLoading="ImagesWaterfall_LazyLoading" Groups="4" Margin="0,40,0,0" />
+                    </Grid>
+                    <Grid x:Name="imageMain" Visibility="Hidden">
+                        <Button
+                            Content="&#xf104; Back"
+                            FontFamily="{StaticResource FontAwesome}"
+                            pu:ButtonHelper.ButtonStyle="Hollow"
+                            BorderBrush="#FF3F3F3F"
+                            Foreground="#FF3F3F3F"
+                            pu:ButtonHelper.HoverBrush="#3F3F3F"
+                            pu:ButtonHelper.CornerRadius="6" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Width="80" FontSize="18" Click="ImageMainBack"/>
+                        <Grid x:Name="imageMainPlayer" Margin="0,40,0,0"/>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Subscriptions" pu:TabControlHelper.ItemIcon="&#xF0A2;" Cursor="Hand">
+            </TabItem>
+            <TabItem Header="Liked videos" pu:TabControlHelper.ItemIcon="&#xF004;" Cursor="Hand">
+            </TabItem>
+            <TabItem Header="Settings" pu:TabControlHelper.ItemIcon="&#xF013;" Cursor="Hand">
+                <Grid>
+                    <CheckBox  Height="30" x:Name="doh"
+                    Content="Enable DoH(DNS over HTTPS)"
+                    pu:CheckBoxHelper.CheckBoxStyle="Switch"
+                    pu:CheckBoxHelper.BoxHeight="25"
+                    pu:CheckBoxHelper.BoxWidth="37.5"
+                    pu:CheckBoxHelper.CheckedBackground="#3F3F3F" HorizontalAlignment="Left" VerticalAlignment="Top" IsChecked="True" Click="DoH_Changed" Margin="20,72,0,0" Cursor="Hand" />
+                    <Button
+                            Content="Flush DNS"
+                            FontFamily="{StaticResource FontAwesome}"
+                            pu:ButtonHelper.ButtonStyle="Hollow"
+                            BorderBrush="#FF3F3F3F"
+                            Foreground="#FF3F3F3F"
+                            pu:ButtonHelper.HoverBrush="#3F3F3F"
+                            pu:ButtonHelper.CornerRadius="6" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,107,0,0" Width="100" FontSize="18" Click="FlushDNS" Height="25"/>
+                    <CheckBox  Height="30" x:Name="proxy"
+                    Content="Enable Custom Proxy"
+                    pu:CheckBoxHelper.CheckBoxStyle="Switch"
+                    pu:CheckBoxHelper.BoxHeight="25"
+                    pu:CheckBoxHelper.BoxWidth="37.5"
+                    pu:CheckBoxHelper.CheckedBackground="#3F3F3F" HorizontalAlignment="Left" VerticalAlignment="Top" IsChecked="False" Click="Proxy_Changed" Margin="20,166,0,0" Cursor="Hand" />
+                    <TextBox  x:Name="servervalue" Height="30"
+                    IsEnabled="False"
+                    pu:TextBoxHelper.CornerRadius="6"
+                    pu:TextBoxHelper.Watermark="Server"
+                    pu:TextBoxHelper.FocusedBorderBrush="#B5B5B5"
+                    pu:TextBoxHelper.FocusedShadowColor="#B5B5B5" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,198,0,0" Width="200" TextChanged="Proxy_Value_Changed" />
+                    <TextBox  x:Name="proxyvalue" Height="30"
+                    InputMethod.IsInputMethodEnabled="False"
+                    IsEnabled="False"
+                    pu:TextBoxHelper.CornerRadius="6"
+                    pu:TextBoxHelper.Watermark="Proxy"
+                    pu:TextBoxHelper.FocusedBorderBrush="#B5B5B5"
+                    pu:TextBoxHelper.FocusedShadowColor="#B5B5B5" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,228,0,0" Width="200" PreviewTextInput="Proxy_Correct" TextChanged="Proxy_Value_Changed" />
+                    <ComboBox x:Name="site"  Height="30"
+                    Width="200"
+                    pu:ComboBoxHelper.HoverBackground="#1EB5B5B5"
+                    pu:ComboBoxHelper.SelectedBackground="#32B5B5B5"
+                    pu:ComboBoxHelper.CornerRadius="6" Margin="20,292,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" SelectionChanged="Site_Changed" Cursor="Hand">
+                        <ComboBoxItem Content="Iwara" IsSelected="True" />
+                        <ComboBoxItem Content="Ecchi" />
+                    </ComboBox>
+                    <Label Content="Network" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="22"/>
+                    <Label Content="Global" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18" Margin="10,38,0,0" Foreground="Gray"/>
+                    <Label Content="Proxy" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18" Margin="10,132,0,0" Foreground="Gray"/>
+                    <Label Content="Site" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18" Margin="10,258,0,0" Foreground="Gray"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</pu:WindowX>

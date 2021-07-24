@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="Iwara.UI.Control.ImageReloadable"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Iwara.UI.Control" 
+             xmlns:pu="clr-namespace:Panuon.UI.Silver;assembly=Panuon.UI.Silver"
+             mc:Ignorable="d" 
+             d:DesignHeight="150" d:DesignWidth="220">
+    <Grid>
+        <Grid x:Name="error" HorizontalAlignment="Center" Width="90" Height="55" VerticalAlignment="Center" Margin="0" MouseDown="ReloadImage" Cursor="Hand" Visibility="Hidden">
+            <TextBlock FontFamily="{StaticResource FontAwesome}" Text="&#xf06a;" Width="37" Height="37" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <TextBlock FontFamily="{StaticResource FontAwesome}"  Text="Loading Failed" Height="18" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+        </Grid>
+        <Image x:Name="image" MouseDown="LoadMedia"/>
+        <pu:Loading
+                x:Name="loading"
+                Foreground="#3F3F3F"
+                IsRunning="True" Margin="0" VerticalAlignment="Center" Width="40" Height="40" HorizontalAlignment="Center" />
+    </Grid>
+</UserControl>

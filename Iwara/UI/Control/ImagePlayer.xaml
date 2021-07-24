@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="Iwara.UI.Control.ImagePlayer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:pu="clr-namespace:Panuon.UI.Silver;assembly=Panuon.UI.Silver"
+             xmlns:local="clr-namespace:Iwara.UI.Control"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <pu:Carousel x:Name="carousel"/>
+        <Button FontFamily="{StaticResource FontAwesome}" x:Name="last" Content="&#xf104;" Click="Last_Click"
+                Width="40"
+                Height="40"
+                pu:ButtonHelper.CornerRadius="20"
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Center" Background="#7F555555" />
+        <Button FontFamily="{StaticResource FontAwesome}" x:Name="next" Content="&#xf105;" Click="Next_Click" 
+                Width="40"
+                Height="40"
+                pu:ButtonHelper.CornerRadius="20"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center" Background="#7F555555" />
+    </Grid>
+</UserControl>
