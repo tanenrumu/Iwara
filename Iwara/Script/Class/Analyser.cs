@@ -28,6 +28,19 @@ namespace Iwara.Script.Class
             customUrl.cgi = Convert.ToString(Regex.Matches(url, cgiReg)[0]);
             return customUrl;
         }
+        public static string AnalyseHostByDoH(string hostJson)
+        {
+            string result = "error";
+            JObject keys = (JObject)JsonConvert.DeserializeObject(hostJson);
+            foreach (JToken key in keys["Answer"])
+            {
+                if (key["type"].ToString() == "1")
+                {
+                    result = key["data"].ToString();
+                }
+            }
+            return keys["Status"].ToString() == "0" ? result : "error";
+        }
         public static ArrayList AnalyseHosts(string hostsJson)
         {
             ArrayList hosts = new ArrayList();

@@ -71,7 +71,8 @@ namespace Iwara.Script.Network
         }
         public static void SetHosts(string siteDomain)
         {
-            HttpWebRequest request = WebRequest.CreateHttp("https://myssl.com/api/v1/tools/dns_query?qtype=1&host=" + siteDomain + ".iwara.tv&qmode=-1");
+            //HttpWebRequest request = WebRequest.CreateHttp("https://myssl.com/api/v1/tools/dns_query?qtype=1&host=" + siteDomain + ".iwara.tv&qmode=-1");
+            HttpWebRequest request = WebRequest.CreateHttp("https://1.1.1.1/dns-query?name=" + siteDomain + ".iwara.tv&type=A&ct=application/dns-json");
             request.Method = "GET";
             try
             {
@@ -82,6 +83,23 @@ namespace Iwara.Script.Network
                     string str = streamReader.ReadToEnd();
                     streamReader.Close();
                     response.Close();
+                    string host = AnalyseHostByDoH(str);
+                    if (host == "error")
+                    {
+                        if (LogError("Get Hosts Error:\nNo Alive Hosts!") == "Yes") { SetHosts(siteDomain); }
+                    }
+                    else
+                    {
+                        if (MainWindow.Settings.HostsList.ContainsKey(siteDomain))
+                        {
+                            MainWindow.Settings.HostsList[siteDomain] = host;
+                        }
+                        else
+                        {
+                            MainWindow.Settings.HostsList.Add(siteDomain, host);
+                        }
+                    }
+                    /*
                     ArrayList hosts = AnalyseHosts(str);
                     bool error = false;
                     foreach (HostsInfo hostsInfo in hosts)
@@ -107,7 +125,7 @@ namespace Iwara.Script.Network
                     if (error)
                     {
                         if (LogError("Get Hosts Error:\nNo Alive Hosts!") == "Yes") { SetHosts(siteDomain); }
-                    }
+                    }*/
                 }
                 else
                 {

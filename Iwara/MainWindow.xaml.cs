@@ -54,7 +54,7 @@ namespace Iwara
             /*
             Settings.HostsList.Add("i", "163.172.85.51");
             Settings.HostsList.Add("www", "66.206.15.50");
-            Settings.HostsList.Add("ecchi", "108.160.165.173");
+            Settings.HostsList.Add("ecchi", "66.206.15.50");
             */
         }
         private void SetBaseHosts()
@@ -324,7 +324,7 @@ namespace Iwara
             string httpResult = GetTextFromIwara(AnalyesUrl(videoUrl));
             if (httpResult.Substring(0, 4) != "error")
             {
-                var video = AnalyseVideoHtml(httpResult);
+                Video video = AnalyseVideoHtml(httpResult);
                 videoMainPlayer.Children.Add(new UI.View.VideoView { Video = video });
             }
             else
@@ -347,7 +347,7 @@ namespace Iwara
             string httpResult = GetTextFromIwara(AnalyesUrl(imageUrl));
             if (httpResult.Substring(0, 4) != "error")
             {
-                var image = AnalyseImageHtml(httpResult);
+                Image image = AnalyseImageHtml(httpResult);
                 imageMainPlayer.Children.Add(new UI.View.ImageView { Image = image });
             }
             else
