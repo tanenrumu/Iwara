@@ -1,7 +1,11 @@
 # Iwara
+![](Images/App.ico)
+
 
 Iwara 非官方 WPF 客户端
-![](https://i.loli.net/2021/07/24/QdqcA6CluDFaxNt.png)
+
+
+![](Images/1.png)
 ## 已完成
 - [x] DoH 和 Http代理 设置
 - [x] 界面框架
